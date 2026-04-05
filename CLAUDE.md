@@ -1,14 +1,14 @@
 # Json transformer in visual way 
 
 ## Objective 
-To develop a json transformer in beautiful/visual way .
+To develop a json transformer in a simple, visual way. The UI must be simple enough to be operated by Claude computer use — prefer large click targets, clear labels, and minimal ambiguity in interactive elements.
 
 ## transformer application 
 Will display a classic 2 pane .
 Left pane will show the input json structure .
 Right pane will show the output structure .
 User is expected to map input structure to output struture .
-Input can be Json of arbitary depth 
+Input can be Json of arbitary depth (arrays are not supported in v1.0 — see constraints).
 
 ### Initial state
 Transformation starts with input and output structure being same .
@@ -46,6 +46,10 @@ User should be able
 Special focus on user experience needs to be given .
 Nodes which are mapped and which are not mapped should be easy to identify .
 Mapping between input and output also should be easy to do with simple UI operation like click , press key or key combinations.
+
+## v1.0 constraints
+- **Arrays are not supported.** If the imported JSON contains array fields, they will be skipped and the user will be shown a clear notice (e.g., "Array fields are not supported in v1.0 and have been excluded").
+- UI must be simple and operable by Claude computer use — avoid complex gestures, tiny targets, or hover-only interactions.
 
 ## tech stack 
 User interface : React 
