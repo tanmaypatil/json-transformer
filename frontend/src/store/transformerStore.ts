@@ -81,7 +81,8 @@ interface TransformerStore {
   clearSelection: () => void;
   deleteMapping: (id: string) => void;
   updateMappingFunctions: (id: string, functions: TransformFunction[]) => void;
-  addOutputChild: (parentPath: string) => void;
+  addOutputChild: (parentPath: string, name: string) => void;
+  setConstantValue: (targetPath: string, value: string) => void;
   renameOutputNode: (path: string, newLabel: string) => void;
   deleteOutputNode: (path: string) => void;
   setTestResult: (output: Record<string, unknown>, warnings: string[]) => void;
@@ -184,23 +185,53 @@ export const useTransformerStore = create<TransformerStore>((set, get) => ({
       mappings: s.mappings.map((m) => (m.id === id ? { ...m, functions } : m)),
     })),
 
-  addOutputChild: (parentPath) => {
+  addOutputChild: (parentPath, name) => {
     const newNode: OutputNode = {
       id: Math.random().toString(36).slice(2),
-      label: "new_field",
-      path: parentPath ? `${parentPath}.new_field` : "new_field",
+      label: name,
+      path: parentPath ? `${parentPath}.${name}` : name,
       children: [],
     };
     set((s) => {
       if (!s.outputStructure) return {};
-      const updatedChildren = addChildToTree(
-        s.outputStructure.children,
-        parentPath,
-        newNode
-      );
+      if (parentPath === "") {
+        // Adding to root
+        return {
+          outputStructure: {
+            ...s.outputStructure,
+            children: [...s.outputStructure.children, newNode],
+          },
+        };
+      }
       return {
-        outputStructure: { ...s.outputStructure, children: updatedChildren },
+        outputStructure: {
+          ...s.outputStructure,
+          children: addChildToTree(s.outputStructure.children, parentPath, newNode),
+        },
       };
+    });
+  },
+
+  setConstantValue: (targetPath, value) => {
+    set((s) => {
+      const existing = s.mappings.find((m) => m.target_path === targetPath);
+      if (existing) {
+        return {
+          mappings: s.mappings.map((m) =>
+            m.target_path === targetPath
+              ? { ...m, source_path: "", constant_value: value }
+              : m
+          ),
+        };
+      }
+      const newMapping: Mapping = {
+        id: Math.random().toString(36).slice(2),
+        source_path: "",
+        target_path: targetPath,
+        functions: [],
+        constant_value: value,
+      };
+      return { mappings: [...s.mappings, newMapping] };
     });
   },
 
@@ -245,6 +276,9 @@ export const useTransformerStore = create<TransformerStore>((set, get) => ({
 
   loadTransformation: (def) =>
     set({
+      inputSchema: def.input_schema ?? null,
+      arraysExcluded: false,
+      excludedPaths: [],
       outputStructure: def.output_structure,
       mappings: def.mappings,
       transformationName: def.name,

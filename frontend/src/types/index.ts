@@ -17,6 +17,7 @@ export interface Mapping {
   source_path: string;
   target_path: string;
   functions: TransformFunction[];
+  constant_value?: string;
 }
 
 export type TransformFunction = "UPPERCASE" | "TRIM";
@@ -25,6 +26,7 @@ export interface TransformationDef {
   name: string;
   version: string;
   created_at: string;
+  input_schema?: FieldNode;
   output_structure: OutputNode;
   mappings: Mapping[];
 }

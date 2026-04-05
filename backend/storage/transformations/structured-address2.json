@@ -1,0 +1,152 @@
+{
+  "name": "structured-address2",
+  "version": "1.0",
+  "created_at": "2026-04-05T13:33:43.956000Z",
+  "input_schema": {
+    "label": "root",
+    "path": "",
+    "field_type": "object",
+    "children": [
+      {
+        "label": "address1",
+        "path": "address1",
+        "field_type": "string",
+        "children": []
+      },
+      {
+        "label": "address2",
+        "path": "address2",
+        "field_type": "string",
+        "children": []
+      },
+      {
+        "label": "address3",
+        "path": "address3",
+        "field_type": "string",
+        "children": []
+      },
+      {
+        "label": "country",
+        "path": "country",
+        "field_type": "string",
+        "children": []
+      },
+      {
+        "label": "city",
+        "path": "city",
+        "field_type": "string",
+        "children": []
+      },
+      {
+        "label": "street",
+        "path": "street",
+        "field_type": "string",
+        "children": []
+      },
+      {
+        "label": "pin",
+        "path": "pin",
+        "field_type": "string",
+        "children": []
+      }
+    ]
+  },
+  "output_structure": {
+    "id": "root",
+    "label": "root",
+    "path": "",
+    "children": [
+      {
+        "id": "1vpsm87djky",
+        "label": "address1",
+        "path": "address1",
+        "children": []
+      },
+      {
+        "id": "zb49sadwyha",
+        "label": "address2",
+        "path": "address2",
+        "children": []
+      },
+      {
+        "id": "6g1lqhvbkp6",
+        "label": "address3",
+        "path": "address3",
+        "children": []
+      },
+      {
+        "id": "4dog2gq5p4s",
+        "label": "country",
+        "path": "country",
+        "children": []
+      },
+      {
+        "id": "u8an9j5fcgl",
+        "label": "city",
+        "path": "city",
+        "children": []
+      },
+      {
+        "id": "nsfknre46u9",
+        "label": "street",
+        "path": "street",
+        "children": []
+      },
+      {
+        "id": "zhp9f5qe0en",
+        "label": "pin",
+        "path": "pin",
+        "children": []
+      },
+      {
+        "id": "c4vhqif1clw",
+        "label": "address_type",
+        "path": "address_type",
+        "children": []
+      }
+    ]
+  },
+  "mappings": [
+    {
+      "id": "sjbqs3t5gr",
+      "source_path": "pin",
+      "target_path": "pin",
+      "functions": [],
+      "constant_value": null
+    },
+    {
+      "id": "ws490rdmhoj",
+      "source_path": "street",
+      "target_path": "street",
+      "functions": [
+        "UPPERCASE"
+      ],
+      "constant_value": null
+    },
+    {
+      "id": "z9pn5izi1b9",
+      "source_path": "city",
+      "target_path": "city",
+      "functions": [
+        "UPPERCASE"
+      ],
+      "constant_value": null
+    },
+    {
+      "id": "u6emw1wl1u8",
+      "source_path": "country",
+      "target_path": "country",
+      "functions": [
+        "UPPERCASE"
+      ],
+      "constant_value": null
+    },
+    {
+      "id": "iqzw9m3046a",
+      "source_path": "",
+      "target_path": "address_type",
+      "functions": [],
+      "constant_value": "hybrid"
+    }
+  ]
+}

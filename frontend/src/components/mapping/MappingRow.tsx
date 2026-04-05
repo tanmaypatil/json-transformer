@@ -26,10 +26,16 @@ export function MappingRow({ mapping }: Props) {
 
   const available = ALL_FUNCTIONS.filter((f) => !mapping.functions.includes(f));
 
+  const isConstant = mapping.constant_value !== undefined;
+
   return (
     <div className="mapping-row">
       <div className="mapping-paths">
-        <span className="mapping-source">{mapping.source_path}</span>
+        {isConstant ? (
+          <span className="mapping-constant">"{mapping.constant_value}"</span>
+        ) : (
+          <span className="mapping-source">{mapping.source_path}</span>
+        )}
         <span className="mapping-arrow">→</span>
         <span className="mapping-target">{mapping.target_path}</span>
       </div>

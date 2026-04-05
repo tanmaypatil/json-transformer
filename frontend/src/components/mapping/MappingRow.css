@@ -30,6 +30,15 @@
   font-size: 14px;
 }
 
+.mapping-constant {
+  color: #cba6f7;
+  font-size: 13px;
+  font-family: monospace;
+  background: rgba(203, 166, 247, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
 .mapping-target {
   color: #a6e3a1;
   font-size: 13px;

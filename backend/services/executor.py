@@ -46,10 +46,13 @@ def execute_transformation(
     _init_output_structure(transformation.output_structure, output)
 
     for mapping in transformation.mappings:
-        value, found = resolve_path(input_data, mapping.source_path)
-        if not found:
-            warnings.append(f"Source path '{mapping.source_path}' not found in input — set to null")
-            value = None
+        if mapping.constant_value is not None:
+            value = mapping.constant_value
+        else:
+            value, found = resolve_path(input_data, mapping.source_path)
+            if not found:
+                warnings.append(f"Source path '{mapping.source_path}' not found in input — set to null")
+                value = None
 
         if value is not None and mapping.functions:
             value = apply_functions(value, mapping.functions)

@@ -6,7 +6,7 @@ import "./Modal.css";
 const NAME_RE = /^[a-zA-Z0-9_-]+$/;
 
 export function SaveModal() {
-  const { outputStructure, mappings, transformationName, closeModal, setTransformationName } =
+  const { inputSchema, outputStructure, mappings, transformationName, closeModal, setTransformationName } =
     useTransformerStore();
 
   const [name, setName] = useState(transformationName ?? "");
@@ -28,6 +28,7 @@ export function SaveModal() {
       name: trimmed,
       version: "1.0",
       created_at: new Date().toISOString(),
+      input_schema: inputSchema ?? undefined,
       output_structure: outputStructure,
       mappings,
     };
