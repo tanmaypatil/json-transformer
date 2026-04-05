@@ -1,0 +1,22 @@
+.array-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(249, 226, 175, 0.08);
+  border-bottom: 1px solid rgba(249, 226, 175, 0.25);
+  color: #f9e2af;
+  font-size: 13px;
+  gap: 16px;
+}
+
+.array-notice-close {
+  background: none;
+  border: none;
+  color: #f9e2af;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  min-height: 0;
+  flex-shrink: 0;
+}

@@ -1,0 +1,40 @@
+.mapping-list {
+  border-top: 2px solid #313244;
+  background: #1e1e2e;
+  flex-shrink: 0;
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapping-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #89b4fa;
+  cursor: pointer;
+  border-bottom: 1px solid #313244;
+  flex-shrink: 0;
+}
+
+.mapping-list-toggle {
+  color: #6c7086;
+}
+
+.mapping-list-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 4px 0;
+}
+
+.mapping-empty {
+  padding: 16px;
+  color: #6c7086;
+  font-size: 13px;
+  text-align: center;
+}
