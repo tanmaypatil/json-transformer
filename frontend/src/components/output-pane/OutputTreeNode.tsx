@@ -87,7 +87,10 @@ export function OutputTreeNode({ node, depth }: Props) {
 
   return (
     <div className="tree-node" style={{ paddingLeft: depth * 16 }}>
-      <div className={`out-node-row ${stateClass}`}>
+      <div
+        className={`out-node-row ${stateClass}`}
+        data-testid={`output-node-${node.path}`}
+      >
         {!isLeaf && (
           <button
             className="expand-btn"
@@ -99,18 +102,21 @@ export function OutputTreeNode({ node, depth }: Props) {
         )}
         {isLeaf && <span className="node-leaf-icon">●</span>}
 
-        <input
-          ref={inputRef}
-          className="node-label-input"
-          value={label}
-          onChange={(e) => setLabel(e.target.value)}
-          onBlur={handleLabelBlur}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") inputRef.current?.blur();
-            if (e.key === "Escape") { setLabel(node.label); inputRef.current?.blur(); }
-          }}
-          onClick={(e) => e.stopPropagation()}
-        />
+        <span className="node-label-group">
+          <input
+            ref={inputRef}
+            className="node-label-input"
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+            onBlur={handleLabelBlur}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") inputRef.current?.blur();
+              if (e.key === "Escape") { setLabel(node.label); inputRef.current?.blur(); }
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
+          {node.path && <span className="node-path">{node.path}</span>}
+        </span>
 
         {isConstant && (
           <span className="constant-badge" title="Constant value">
@@ -125,6 +131,7 @@ export function OutputTreeNode({ node, depth }: Props) {
                 className={`action-btn ${isSelected ? "action-btn-active" : ""}`}
                 onClick={handleMap}
                 title="Map from an input field"
+                data-testid={`map-btn-${node.path}`}
               >
                 {isMapped && !isConstant ? "Re-map" : "Map"}
               </button>
@@ -132,19 +139,27 @@ export function OutputTreeNode({ node, depth }: Props) {
                 className={`action-btn ${settingValue ? "action-btn-active" : ""}`}
                 onClick={() => setSettingValue((v) => !v)}
                 title="Set a constant value"
+                data-testid={`set-value-btn-${node.path}`}
               >
                 = Value
               </button>
             </>
           )}
-          <button className="action-btn" onClick={handleAddChild} title="Add child field">
+          <button
+            className="action-btn"
+            onClick={handleAddChild}
+            title="Add child field"
+            data-testid={`add-child-btn-${node.path}`}
+          >
             + Child
           </button>
           {node.path !== "" && (
             <button
               className="action-btn action-btn-danger"
               onClick={() => deleteOutputNode(node.path)}
-              title="Delete this field"
+              title={`Delete ${node.path}`}
+              aria-label={`Delete ${node.path}`}
+              data-testid={`delete-btn-${node.path}`}
             >
               ✕
             </button>

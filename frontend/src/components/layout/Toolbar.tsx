@@ -16,21 +16,22 @@ export function Toolbar() {
             {selectedInputPath
               ? `Selected input: ${selectedInputPath} — now click an output field`
               : `Selected output: ${selectedOutputPath} — now click an input field`}
-            <button className="btn btn-ghost" onClick={clearSelection}>
+            <button className="btn btn-ghost" onClick={clearSelection} data-testid="clear-selection-btn">
               Clear
             </button>
           </span>
         )}
-        <button className="btn btn-primary" onClick={() => openModal("import")}>
+        <button className="btn btn-primary" onClick={() => openModal("import")} data-testid="import-btn">
           Import JSON
         </button>
-        <button className="btn btn-secondary" onClick={() => openModal("load")}>
+        <button className="btn btn-secondary" onClick={() => openModal("load")} data-testid="load-btn">
           Load Transformation
         </button>
         <button
           className="btn btn-secondary"
           onClick={() => openModal("save")}
           disabled={!inputSchema}
+          data-testid="save-btn"
         >
           Save Transformation
         </button>
@@ -38,6 +39,7 @@ export function Toolbar() {
           className="btn btn-secondary"
           onClick={() => openModal("test")}
           disabled={!inputSchema}
+          data-testid="test-btn"
         >
           Test
         </button>

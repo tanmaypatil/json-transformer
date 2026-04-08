@@ -32,6 +32,7 @@ export function OutputPane() {
             style={{ marginLeft: "auto", fontSize: 12 }}
             onClick={() => { setAddingRoot(true); setNewRootName("new_field"); }}
             title="Add a top-level field to the output"
+            data-testid="add-root-field-btn"
           >
             + Add Field
           </button>

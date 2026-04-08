@@ -28,12 +28,19 @@ export function InputTreeNode({ node, depth }: Props) {
 
   return (
     <div className="tree-node" style={{ paddingLeft: depth * 16 }}>
-      <div className={`node-row ${stateClass}`} onClick={handleClick}>
+      <div
+        className={`node-row ${stateClass}`}
+        onClick={handleClick}
+        data-testid={`input-node-${node.path}`}
+      >
         {!isLeaf && (
           <span className="node-expand">{expanded ? "▾" : "▸"}</span>
         )}
         {isLeaf && <span className="node-leaf-icon">●</span>}
-        <span className="node-label">{node.label}</span>
+        <span className="node-label-group">
+          <span className="node-label">{node.label}</span>
+          {node.path && <span className="node-path">{node.path}</span>}
+        </span>
         <span className={`node-type type-${node.field_type}`}>{node.field_type}</span>
         {isMapped && <span className="node-badge mapped-badge">mapped</span>}
       </div>

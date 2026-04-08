@@ -59,6 +59,22 @@
   flex-shrink: 0;
 }
 
+.node-label-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.node-path {
+  font-size: 10px;
+  font-family: monospace;
+  color: #6c7086;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .node-label-input {
   flex: 1;
   background: transparent;

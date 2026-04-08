@@ -52,6 +52,7 @@ export function LoadModal() {
                 className="form-select"
                 value={selected}
                 onChange={(e) => setSelected(e.target.value)}
+                data-testid="load-select"
               >
                 {names.map((n) => (
                   <option key={n} value={n}>{n}</option>
@@ -65,11 +66,12 @@ export function LoadModal() {
           </p>
         </div>
         <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={closeModal}>Cancel</button>
+          <button className="btn btn-secondary" onClick={closeModal} data-testid="cancel-load-btn">Cancel</button>
           <button
             className="btn btn-primary"
             onClick={handleLoad}
             disabled={!selected || loading || fetching || names.length === 0}
+            data-testid="confirm-load-btn"
           >
             {loading ? "Loading..." : "Load"}
           </button>

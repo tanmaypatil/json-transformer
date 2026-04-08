@@ -37,6 +37,7 @@ export function ImportModal() {
               type="file"
               accept=".json,application/json"
               className="form-input"
+              data-testid="file-input"
               onChange={(e) => {
                 setFile(e.target.files?.[0] ?? null);
                 setError(null);
@@ -46,13 +47,14 @@ export function ImportModal() {
           {error && <div className="error-message">{error}</div>}
         </div>
         <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={closeModal}>
+          <button className="btn btn-secondary" onClick={closeModal} data-testid="cancel-import-btn">
             Cancel
           </button>
           <button
             className="btn btn-primary"
             onClick={handleImport}
             disabled={!file || loading}
+            data-testid="confirm-import-btn"
           >
             {loading ? "Importing..." : "Import"}
           </button>

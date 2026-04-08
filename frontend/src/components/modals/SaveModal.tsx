@@ -69,6 +69,7 @@ export function SaveModal() {
               onChange={(e) => { setName(e.target.value); setError(null); }}
               placeholder="my-transformation"
               onKeyDown={(e) => { if (e.key === "Enter") handleSave(); }}
+              data-testid="save-name-input"
             />
           </div>
           {error && <div className="error-message">{error}</div>}
@@ -77,8 +78,8 @@ export function SaveModal() {
           )}
         </div>
         <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={closeModal}>Cancel</button>
-          <button className="btn btn-primary" onClick={handleSave} disabled={loading || saved}>
+          <button className="btn btn-secondary" onClick={closeModal} data-testid="cancel-save-btn">Cancel</button>
+          <button className="btn btn-primary" onClick={handleSave} disabled={loading || saved} data-testid="confirm-save-btn">
             {loading ? "Saving..." : "Save"}
           </button>
         </div>
